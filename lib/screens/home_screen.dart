@@ -42,9 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.only(top: 20),
-                width: 140,
-                height: 140,
+                padding: EdgeInsets.only(top: 15),
+                width: MediaQuery.of(context).size.width * 0.35,
+                height: MediaQuery.of(context).size.width * 0.35,
                 child: Image.asset('assets/images/app1.png'),
               ),
               Container(
