@@ -15,7 +15,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     // TODO: implement initState
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    formKey.currentState.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -111,27 +120,104 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: 60,
                   ),
-                  InkWell(
-                    onTap: () {
-                      //TODO Submit Data & Sign In
-                      () {};
-                    },
-                    splashColor: Colors.transparent,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: MediaQuery.of(context).size.height * 0.075,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [Color(0xff007EF4), Color(0xff2A75BC)],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: InkWell(
+                      onTap: () {
+                        //TODO Submit Data & Sign In
+                        () {};
+                      },
+                      highlightColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      enableFeedback: true,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        height: MediaQuery.of(context).size.height * 0.075,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xff007EF4), Color(0xff2A75BC)],
+                          ),
+                          borderRadius: BorderRadius.circular(25),
                         ),
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Calculate',
-                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        child: Center(
+                          child: Text(
+                            'Calculate',
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
                         ),
                       ),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            //TODO Save Reading Locally
+                            () {};
+                          },
+                          highlightColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          enableFeedback: true,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.075,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Color(0xff007EF4), Color(0xff2A75BC)],
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Save Reading',
+                                style: TextStyle(
+                                    fontSize: 17, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            //TODO Clear Screen
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        HomeScreen()),
+                                (route) => false);
+                            formKey.currentState.dispose();
+                          },
+                          highlightColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          enableFeedback: true,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.075,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Color(0xff007EF4), Color(0xff2A75BC)],
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Clear',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   // SizedBox(
