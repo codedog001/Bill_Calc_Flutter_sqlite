@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Bill o \'Meter'),
+        title: Text('Bill o\' Meter'),
         backgroundColor: Color(0xff007EF4),
       ),
       body: SingleChildScrollView(
@@ -116,6 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       //TODO Submit Data & Sign In
                       () {};
                     },
+                    splashColor: Colors.transparent,
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.9,
                       height: MediaQuery.of(context).size.height * 0.075,
