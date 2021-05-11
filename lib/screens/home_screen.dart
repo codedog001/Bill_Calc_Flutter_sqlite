@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           controller: initialReadingController,
                           keyboardType: TextInputType.number,
                           validator: (val) {
-                            if (val.length < 2) {
+                            if (val.length < 1) {
                               return "Please enter a valid number";
                             }
                             return null;
@@ -95,10 +95,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         TextFormField(
                           validator: (val) {
-                            if (val.isNotEmpty) {
-                              return null;
+                            if (val.length < 1) {
+                              return "Please enter a valid number";
                             }
-                            return "Please enter a valid number.";
+                            return null;
                           },
                           style: TextStyle(color: Colors.white),
                           keyboardType: TextInputType.number,
