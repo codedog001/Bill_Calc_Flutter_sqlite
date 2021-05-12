@@ -36,47 +36,51 @@ class _ReadingsScreenState extends State<ReadingsScreen> {
           builder: (context, userData) {
             if (userData.hasData) {
               newReading = userData.data;
-              return ListView.builder(itemBuilder: (context, index) {
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 200,
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: Card(
-                            child: Column(
-                          children: [
-                            Text(
-                              newReading[index].id,
-                              style: TextStyle(
-                                fontSize: 15,
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  return SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 200,
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: Card(
+                              child: Column(
+                            children: [
+                              Text(
+                                newReading[index].id,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                ),
                               ),
-                            ),
-                            Text(
-                              newReading[index].initial_reading,
-                              style: TextStyle(
-                                fontSize: 15,
+                              Text(
+                                newReading[index].initial_reading,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                ),
                               ),
-                            ),
-                            Text(
-                              newReading[index].final_reading,
-                              style: TextStyle(
-                                fontSize: 15,
+                              Text(
+                                newReading[index].final_reading,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                ),
                               ),
-                            ),
-                            Text(
-                              newReading[index].billAmount,
-                              style: TextStyle(
-                                fontSize: 15,
+                              Text(
+                                newReading[index].billAmount,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                ),
                               ),
-                            ),
-                          ],
-                        )),
-                      )
-                    ],
-                  ),
-                );
-              });
+                            ],
+                          )),
+                        )
+                      ],
+                    ),
+                  );
+                },
+                reverse: true,
+                itemCount: newReading.length,
+              );
             }
             return Container();
           }),

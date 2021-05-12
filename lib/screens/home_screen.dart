@@ -2,6 +2,7 @@ import 'package:bill_calc/screens/saved_readings.dart';
 import 'package:bill_calc/utils/database.dart';
 import 'package:flutter/material.dart';
 import '../models/reading.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,6 +13,9 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController initialReadingController = new TextEditingController();
   TextEditingController finalReadingController = new TextEditingController();
   TextEditingController rateController = new TextEditingController();
+
+  var nowdate;
+  var dateToUse;
 
   double billAmount = 0;
 
@@ -263,10 +267,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               GestureDetector(
                                 onTap: () {
                                   print('pressed here 2');
+                                  nowdate = DateTime.now();
+                                  dateToUse = DateFormat.yMd().format(nowdate);
                                   var newReading = Reading(
                                     final_reading:
                                         finalReadingController.text.toString(),
-                                    id: DateTime.now().toString(),
+                                    id: dateToUse.toString(),
                                     initial_reading: initialReadingController
                                         .text
                                         .toString(),
