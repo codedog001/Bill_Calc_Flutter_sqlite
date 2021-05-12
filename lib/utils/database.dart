@@ -50,15 +50,24 @@ class DBProvider {
     return res;
   }
 
-  Future<dynamic> getAllReadings() async {
+  Future<List<Reading>> getAllReadings() async {
+    List<Reading> readings = [];
     final db = await database;
-    var res = await db.query("readingTable");
+    var res = (await db.query("readingTable"));
 
-    if (res.length == 0) {
-      return null;
-    } else {
-      var resMap = res[0];
-      return resMap.isNotEmpty ? resMap : Null;
-    }
+    res.forEach((element) {
+      print("$element is element");
+      print(readings);
+    });
+
+    res.forEach((element) {
+      var readingElement = Reading.fromJson(element);
+      print("runs");
+      readings.add(readingElement);
+    });
+
+    print(readings.isEmpty.toString());
+
+    return readings;
   }
 }
