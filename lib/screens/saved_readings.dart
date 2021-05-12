@@ -61,6 +61,7 @@ class _ReadingsScreenState extends State<ReadingsScreen> {
           builder: (context, userData) {
             if (userData.hasData) {
               newReading = userData.data;
+              newReading = newReading.reversed.toList();
               return ListView.builder(
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -96,7 +97,6 @@ class _ReadingsScreenState extends State<ReadingsScreen> {
                   );
                 },
                 itemCount: newReading.length,
-                reverse: true,
               );
             }
             return Container();

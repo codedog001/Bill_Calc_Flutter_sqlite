@@ -13,6 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController initialReadingController = new TextEditingController();
   TextEditingController finalReadingController = new TextEditingController();
   TextEditingController rateController = new TextEditingController();
+  DateTime _eventDate = null;
 
   var nowdate;
   var dateToUse;
@@ -37,6 +38,22 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
       ),
     );
+  }
+
+  void _openDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1990),
+      lastDate: DateTime(2100),
+    ).then((datePicked) {
+      if (datePicked == null) {
+        return;
+      }
+      setState(() {
+        _eventDate = datePicked;
+      });
+    });
   }
 
   @override
@@ -155,6 +172,78 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: _eventDate == null
+                              ? MainAxisAlignment.center
+                              : MainAxisAlignment.spaceEvenly,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                _openDatePicker();
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.33,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.075,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(colors: [
+                                    Color(0xff007EF4),
+                                    Color(0xff2A75BC)
+                                  ]),
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_today,
+                                      color: Colors.white,
+                                    ),
+                                    Text(
+                                      'Pick Date',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            _eventDate != null
+                                ? Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.45,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.075,
+                                      decoration: BoxDecoration(
+                                          color: Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          border: Border.all(
+                                              color: Colors.white, width: 2)),
+                                      child: Center(
+                                        child: SelectableText(
+                                          "${DateFormat.yMMMd().format(_eventDate).toString()}",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : Container(),
+                          ],
+                        ),
 
                         billAmount > 0
                             ? Padding(
@@ -180,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               )
                             : Container(),
                         SizedBox(
-                          height: 30,
+                          height: 10,
                         ),
                         Column(
                           children: [
@@ -284,7 +373,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   var newReading = Reading(
                                     final_reading:
                                         finalReadingController.text.toString(),
-                                    date: dateToUse.toString(),
+                                    date: DateFormat.yMMMd()
+                                        .format(_eventDate)
+                                        .toString(),
                                     id: DateTime.now().toString(),
                                     initial_reading: initialReadingController
                                         .text
