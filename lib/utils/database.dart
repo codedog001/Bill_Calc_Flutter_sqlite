@@ -56,14 +56,14 @@ class DBProvider {
     final db = await database;
     var res = (await db.query("readingTable"));
 
-    res.forEach((element) {
-      print("$element is element");
-      print(readings);
-    });
+    // res.forEach((element) {
+    //   print("$element is element");
+    //   print(readings);
+    // });
 
     res.forEach((element) {
       var readingElement = Reading.fromJson(element);
-      print("runs");
+      // print("runs");
       readings.add(readingElement);
     });
 

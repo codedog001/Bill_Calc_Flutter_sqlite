@@ -35,7 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
       SnackBar(
         content: const Text('Reading Saved'),
         action: SnackBarAction(
-            label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
+            label: 'OK',
+            textColor: Colors.amber,
+            onPressed: scaffold.hideCurrentSnackBar),
       ),
     );
   }
@@ -385,14 +387,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   DBProvider.db.newEntry(newReading);
                                   _showToast(context);
                                 },
-                                // highlightColor: Colors.transparent,
-                                // focusColor: Colors.transparent,
-                                // hoverColor: Colors.transparent,
-                                // splashColor: Colors.transparent,
-                                // enableFeedback: true,
                                 child: Container(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.35,
+                                      MediaQuery.of(context).size.width * 0.9,
                                   height: MediaQuery.of(context).size.height *
                                       0.075,
                                   decoration: BoxDecoration(
@@ -407,43 +404,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Center(
                                     child: Text(
                                       'Save Reading',
-                                      style: TextStyle(
-                                          fontSize: 17, color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  //TODO Clear Screen
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              HomeScreen()),
-                                      (route) => false);
-                                },
-                                highlightColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                splashColor: Colors.transparent,
-                                enableFeedback: true,
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.35,
-                                  height: MediaQuery.of(context).size.height *
-                                      0.075,
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Color(0xff007EF4),
-                                        Color(0xff2A75BC)
-                                      ],
-                                    ),
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Clear',
                                       style: TextStyle(
                                           fontSize: 20, color: Colors.white),
                                     ),
