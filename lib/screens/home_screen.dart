@@ -268,7 +268,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: () {
                                   print('pressed here 2');
                                   nowdate = DateTime.now();
-                                  dateToUse = DateFormat.yMd().format(nowdate);
+                                  dateToUse =
+                                      DateFormat.yMMMMEEEEd().format(nowdate);
                                   var newReading = Reading(
                                     final_reading:
                                         finalReadingController.text.toString(),
@@ -294,7 +295,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     gradient: LinearGradient(
                                       colors: [
                                         Color(0xff007EF4),
-                                        Colors.red,
                                         Color(0xff2A75BC)
                                       ],
                                     ),

@@ -10,10 +10,35 @@ class ReadingsScreen extends StatefulWidget {
 class _ReadingsScreenState extends State<ReadingsScreen> {
   List<Reading> newReading = [];
   Future<List<Reading>> _readingFuture;
+  List<Reading> newReading1; //To store reversed list.
 
   Future<List<Reading>> getReadings() async {
     final readingData = await DBProvider.db.getAllReadings();
     return readingData;
+  }
+
+  Widget getText(String heading, String detail) {
+    return Container(
+      padding: EdgeInsets.all(6),
+      child: Row(children: [
+        Text(
+          "$heading: ",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+        SelectableText(
+          "$detail ",
+          enableInteractiveSelection: true,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 19,
+          ),
+        ),
+      ]),
+    );
   }
 
   @override
@@ -27,6 +52,7 @@ class _ReadingsScreenState extends State<ReadingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text('Saved Readings'),
         backgroundColor: Color(0xff007EF4),
@@ -36,49 +62,41 @@ class _ReadingsScreenState extends State<ReadingsScreen> {
           builder: (context, userData) {
             if (userData.hasData) {
               newReading = userData.data;
+              newReading1 = newReading.reversed.toList();
               return ListView.builder(
+                shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return SingleChildScrollView(
+                    physics: NeverScrollableScrollPhysics(),
                     child: Column(
                       children: [
                         Container(
+                          padding: EdgeInsets.all(2),
                           height: 200,
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(shape: BoxShape.circle),
+                          width: MediaQuery.of(context).size.width * 0.99,
                           child: Card(
+                              color: Colors.blue[300],
+                              elevation: 3,
                               child: Column(
-                            children: [
-                              Text(
-                                newReading[index].id,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                newReading[index].initial_reading,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                newReading[index].final_reading,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                newReading[index].billAmount,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ],
-                          )),
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  getText("Date", newReading1[index].id),
+                                  getText("Initial Reading",
+                                      newReading1[index].initial_reading),
+                                  getText("Final Reading",
+                                      newReading1[index].final_reading),
+                                  getText("Total Amount",
+                                      "₹ ${newReading1[index].billAmount}"),
+                                ],
+                              )),
                         )
                       ],
                     ),
                   );
                 },
-                reverse: true,
                 itemCount: newReading.length,
               );
             }
