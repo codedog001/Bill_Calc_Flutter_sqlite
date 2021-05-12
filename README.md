@@ -1,5 +1,7 @@
 # Bill O' Meter
-Save your meter readings on your device, with date and amount.<br />
+- Save your meter readings on your device, with date and amount.<br />
+- Formula Used: (Final Reading - Initial Reading + 1) * Rate
+
 ### Storage: On-Device (Using Sqlite) <br />
 
 
