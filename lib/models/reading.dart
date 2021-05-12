@@ -15,7 +15,7 @@ class Reading {
         final_reading: readingJson["final_reading"],
         id: readingJson['id'],
         initial_reading: readingJson['initial_reading'],
-        billAmount: readingJson['rate'],
+        billAmount: readingJson['billAmount'],
       );
 
   Map<String, dynamic> toJson() => {
