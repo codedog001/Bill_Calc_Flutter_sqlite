@@ -284,7 +284,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   var newReading = Reading(
                                     final_reading:
                                         finalReadingController.text.toString(),
-                                    id: dateToUse.toString(),
+                                    date: dateToUse.toString(),
+                                    id: DateTime.now().toString(),
                                     initial_reading: initialReadingController
                                         .text
                                         .toString(),

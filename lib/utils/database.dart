@@ -26,7 +26,7 @@ class DBProvider {
       onCreate: (db, version) async {
         await db.execute('''
             CREATE TABLE readingTable(
-              id TEXT PRIMARY KEY, initial_reading TEXT, final_reading TEXT, billAmount TEXT
+              id TEXT PRIMARY KEY, date TEXT, initial_reading TEXT, final_reading TEXT, billAmount TEXT
             )
           ''');
       },
@@ -38,10 +38,11 @@ class DBProvider {
     final db = await database;
     var res = await db.rawInsert('''
     INSERT INTO readingTable(
-      id, initial_reading, final_reading, billAmount
-    ) VALUES (?, ?, ?, ?)
+      id, date, initial_reading, final_reading, billAmount
+    ) VALUES (?, ?, ?, ?, ?)
     ''', [
       newEntry.id,
+      newEntry.date,
       newEntry.initial_reading,
       newEntry.final_reading,
       newEntry.billAmount
