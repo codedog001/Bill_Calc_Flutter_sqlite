@@ -28,6 +28,17 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  void _showToast(BuildContext context) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: const Text('Reading Saved'),
+        action: SnackBarAction(
+            label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -280,6 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     billAmount: billAmount.toString(),
                                   );
                                   DBProvider.db.newEntry(newReading);
+                                  _showToast(context);
                                 },
                                 // highlightColor: Colors.transparent,
                                 // focusColor: Colors.transparent,
@@ -317,7 +329,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                           builder: (BuildContext context) =>
                                               HomeScreen()),
                                       (route) => false);
-                                  formKey.currentState.dispose();
                                 },
                                 highlightColor: Colors.transparent,
                                 focusColor: Colors.transparent,

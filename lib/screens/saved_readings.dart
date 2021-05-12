@@ -10,7 +10,7 @@ class ReadingsScreen extends StatefulWidget {
 class _ReadingsScreenState extends State<ReadingsScreen> {
   List<Reading> newReading = [];
   Future<List<Reading>> _readingFuture;
-  List<Reading> newReading1; //To store reversed list.
+  // List<Reading> newReading; //To store reversed list.
 
   Future<List<Reading>> getReadings() async {
     final readingData = await DBProvider.db.getAllReadings();
@@ -62,7 +62,7 @@ class _ReadingsScreenState extends State<ReadingsScreen> {
           builder: (context, userData) {
             if (userData.hasData) {
               newReading = userData.data;
-              newReading1 = newReading.reversed.toList();
+              newReading = newReading.reversed.toList();
               return ListView.builder(
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -83,13 +83,13 @@ class _ReadingsScreenState extends State<ReadingsScreen> {
                                     MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  getText("Date", newReading1[index].id),
+                                  getText("Date", newReading[index].id),
                                   getText("Initial Reading",
-                                      newReading1[index].initial_reading),
+                                      newReading[index].initial_reading),
                                   getText("Final Reading",
-                                      newReading1[index].final_reading),
+                                      newReading[index].final_reading),
                                   getText("Total Amount",
-                                      "₹ ${newReading1[index].billAmount}"),
+                                      "₹ ${newReading[index].billAmount}"),
                                 ],
                               )),
                         )
