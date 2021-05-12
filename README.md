@@ -1,16 +1,11 @@
-# bill_calc
+# Bill O' Meter
+Save your meter readings on your device, with date and amount.<br />
+### Storage: On-Device (Using Sqlite) <br />
 
-A new Flutter project.
 
-## Getting Started
+### Screenshots
+![Img1](https://user-images.githubusercontent.com/70198503/118011952-30b6e880-b36e-11eb-8a45-71424cecf918.jpeg)
+![im2](https://user-images.githubusercontent.com/70198503/118011968-34e30600-b36e-11eb-96ac-31eb6e1b55da.jpeg)
+![img3](https://user-images.githubusercontent.com/70198503/118011979-36acc980-b36e-11eb-9f82-6ab99d708de8.jpeg)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
